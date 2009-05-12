@@ -1,0 +1,20 @@
+<div class="page_content_holder">
+	<h1>Artist</h1><br/>
+	
+	<% if @artist %>
+		<%= render(:partial => "artist/summary")%>
+	<% else %>
+		<% form_tag do -%>	
+			<table class="">
+				<tr>
+					<td class="field_title">Artist name&nbsp;</td>
+					<td class="field"><%= text_field :artist, :name, :size => 25, :class => 'text_field' %></td>
+				</tr>
+				<tr>
+					<td class="field_title"></td>
+					<td class="field"><%= submit_tag "Find", :class => 'submit_button' %></td>
+				</tr>
+			</table>
+		<% end-%>
+	<% end-%>
+</div>

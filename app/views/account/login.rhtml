@@ -1,0 +1,20 @@
+<div class="page_content_holder">
+	<h1>Login</h1><br/>
+	
+	<% form_tag do -%>	
+		<table class="login_table">
+			<tr>
+				<td class="field_title">Email</td>
+				<td class="field"><%= text_field :user, :email, :size => 25, :class => 'text_field', :value => "#{@email}" %></td>
+			</tr>
+			<tr>
+				<td class="field_title">Password&nbsp; &nbsp;</td>
+				<td class="field"><%= password_field :user, :password, :size => 15, :class => 'text_field' %></td>
+			</tr>
+			<tr>
+				<td class="field_title"></td>
+				<td class="field"><%= submit_tag "Login", :class => 'submit_button' %></td>
+			</tr>
+		</table>
+	<% end-%>
+</div><br/>

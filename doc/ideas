@@ -1,0 +1,137 @@
+first
+* scrape playlist.com
+* artwork
+* somehow weight sources differently depending on who is being sought
+
+later
+* find a way for users to initiate a download of all other known mp3s
+* figure out a way to process record reviews
+* send out messages to current users.  Ask: feedback, list new features, get across brand, add unsub thingy
+* create sub/un-sub list
+* approach other sites that might want recommendations: emusic
+* messaging? social networking? similar taste alerts?
+* Have a fold out player that shows a number of band tracks.
+* last.fm: link top bands for users' neighbours.
+* last.fm: link library artists for users' neighbours.
+* last.fm: use recommendations for bands.  Obviously.
+* get FF to add a custom tp feed
+* feed of all user activity on TP
+* sniff user's country and if in UK/other country have affiliate for then switch link to that amazon
+* if on iphone just put links to track
+* community page w/ best recommendation feeds (for you?) and a search box or listing for users
+* track hits to each user recommendation feed
+* user submissable myspaces, descriptions and websites.
+* degrade source grades over time so that a source must be consistently good.
+* allow liking, disliking and flagging from feeds
+* list feeds for interesting/good users.  How decide whether interesting? Do it by hand? By requests to that user's feed? User's approval rating of their recommendations?
+* somehow import itunes lib (xml export? music dir listing?)
+* search misspellings, inner searches
+* users get personalised recommendations to their twitter accounts? d messages
+* figure out ways to bring recommendations into users' listening habits
+* give users feedback on how well their suggestions are doing
+* add pictures to results (from flickr)
+
+done
+* stats: source grades
+* stats: searches
+* api: band data
+* api: searches
+* scrape absolutepunk.net
+* take categories out from band descs: http://skitch.com/rksprst/3t9q/the-perceptron-astute-music-recommendations
+* be more aggressive about culling non-responsive tracks.
+* sanitise band names passed in by URL for XSS.
+* audio life stream
+* make merge better
+* make user suggestions moderatable
+* email guy who asked for user suggestions.  Put note on blog thread.
+* blog about adding recs
+* users add recs
+* make homepage as uncluttered as pos
+* add user recommendations API call
+* make controls, elsewhere, admin bigger
+* test myspace bad url deleted, back up db and then run on live
+* just take each loved/handsearched band and spider out until get stuff not yet recommended
+* change main method so it explores x nodes from a loved band, y from a no-rating band and z (0?) from a hated band.
+* detect tracks that won't play
+* run artist name and other names capitaliser
+* fix vertical align problem on playlist items w/ no sample track
+* add link to automatron page in automatron feed
+* download playlist
+	- itpc://www.novasscarman.org/podcasts.xml
+* Track clicks on playerayer, add to playlist, wikipedia, myspace and band website links
+* add add to playlist into mix
+* build that blasted band name-saferiser
+* try _band first for Wikipedia articles.
+* make why bigger and add explanation to source table
+* more stats
+* Grab bands on the same bills as each other (myspace? songkick? upcoming?)
+	- w/band1,band2
+	- discard if includes: 'and', @, &, +, /, |, )
+* write task to capitalise all band names 'correctly'
+* allow alternative names for artists
+* method for merging two bands
+* validation on signup/claim form
+* scrape muxtapestumbler
+* think about not showing placeholders for missing elsewhere data
+* somehow segment sources into the areas/genres/periods/etc they're good at and give them a boost there and downrate them elsewhere.
+* log and email out about communiques
+* allow people to create their own lists of recommendations - audiographies - and share by web page, RSS etc.  Show as recs.
+* unsave from playlist immediately hides if on playlist
+* flagging-box style feedback box
+* think about caching non-personalised link grades
+* fix playlist overlay bug
+* save for later list
+* get recommendations from Tiny Mix Tapes.
+* add admin paste box for artist names
+* add admin band renamer
+* add sample mp3 onto user recs RSS
+* herald new personalised recommendations
+* update API docs
+* introduce normalising of source grades based on number of links for that source
+* fix punct prob in /recommendation/artist/Magnolia+Electric+Co.
+* do automatron scheduled task
+* automatically redirect /automatron to /automatron/username
+* no autom recs
+* remove news from all pages but home
+* blog about new personalised recommendations
+* integrate source grades with link grades, rather than making them the whole potato.
+* change love to like/dislike
+* add dislike action
+* create a 'latest' area
+* reinstate ... on summaries
+* profile users via:
+	- loves
+	- (hand) searches
+	- hates
+* dislike action
+* blog about change to like, new dislike
+* blog about whys
+* sort out those fucking wiki tags in the summaries
+* remove artis
+* fix beatles problem
+* create way to go straight to artist summary
+* expand wikipeida article search to look for default page name addition for single artists or people
+* wikipedia band pages links lists
+* Label pages on wikipedia as linking mechanism (source: SameLabelSource)
+* blog
+* delete button when admin logged in on front website
+* keep record of past source grades
+* Flash player that, um, flashes green when playing a song
+* flash player that stops other players
+* add "here are your recommendations if you like the x"
+* scrape hypem.com somehow?
+* scrape mp3 blogs
+* Hook into emusic/iTunes/insound/interpunk for buy links.
+* Link to band website for more tracks.
+* top friends of bands on MySpace
+* retain search text even on unsuccessful search
+* hide love
+* make search better by searching within bands, removing articles, stripping spaces
+* specify keyword follows for theperceptron and the perceptron
+* query suggestions e.g. Did you mean Band A or Band B or Band C (click on one).  Show results for first.
+* fix problem with grabbing ends of articles
+* blog about affiliate, web and myspace, new myspace source, visibility, search suggestions, search improvements
+* state source of recommendation
+* list wrong mp3s (and wrong wikipedia titles?) so after nulling a wrong one, they are not pulled again.
+* stats page
+* flags

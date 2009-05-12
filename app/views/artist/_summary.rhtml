@@ -1,0 +1,11 @@
+<!-- title -->
+<h2><%= link_to "#{@artist.name}", "/recommendation/artist/" + @artist.get_safe_name() %></strong></h2>&nbsp;&nbsp;
+<!-- hear -->
+<% sample_track_url = @artist.get_sample_track_url() %>
+<% if sample_track_url != "" %>
+	<a href="<%=sample_track_url%>"></a> <span class="mini_player_hear">hear</span>
+	&nbsp;
+<% end-%>
+
+<!-- content -->
+<%= render(:partial => 'artist/content') %>

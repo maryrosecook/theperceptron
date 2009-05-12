@@ -1,0 +1,7 @@
+<div class="page_content_holder">
+	<% form_tag :action => 'create' do %>
+		<h1>New post <%= submit_tag "Save", :class => "submit_button" %></h1><br/>
+
+	  <%= render :partial => 'form' %>
+	<% end %>
+</div>

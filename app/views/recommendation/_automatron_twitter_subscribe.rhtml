@@ -1,0 +1,15 @@
+<span id="automatron_twitter_subscribe_link">
+	<%= link_to_remote("Send recommendations to my Twitter account", {:url => {}, 
+																																		:loading => "Element.show('automatron_twitter_subscribe_form');
+																																								 Element.hide('automatron_twitter_subscribe_link');"}) %>
+</span>
+<span id="automatron_twitter_subscribe_form" class="automatron_twitter_subscribe_form" style="display:none;">
+	<form action="/recommendation/automatron_twitter_subscribe" method="post" onsubmit="new Ajax.Updater('automatron_twitter_subscribe', '/recommendation/automatron_twitter_subscribe', {asynchronous:true, evalScripts:true, onLoading:function(request){}, parameters:Form.serialize(this)}); return false;">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		<%= hidden_field :user, :id %>
+		<%= text_field :user, :twitter_username, :size => 20, :class => 'inline_text_area', :onclick => "this.value = ''" %>
+		<%= submit_tag "Subscribe", :class => "inline_submit_button" %>
+		or <%= link_to_remote("cancel", {:url => {}, :loading => "Element.hide('automatron_twitter_subscribe_form');
+																															Element.show('automatron_twitter_subscribe_link');"}) %>
+	</form>
+</span>

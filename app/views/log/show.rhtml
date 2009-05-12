@@ -1,0 +1,15 @@
+<div class="page_content_holder">
+	<h1>Log</h1><br/>
+
+	<div>
+		<strong>User:</strong> <%= @log.user_id %><br/>
+		<strong>Item:</strong> <%= @log.item_id %> <%= @log.item_class %><br/>
+		<strong>Event:</strong> <%= @log.event %><br/>
+		<strong>Message:</strong> <%= @log.message %><br/>
+		<strong>Time:</strong> <%= Util::f_date_time(@log.time) %><br/>
+		<strong>Exception:</strong> <%= @log.exception_message %><br/>
+		<br/><br/>
+
+		<%= @log.exception_backtrace %>
+	</div>
+</div>

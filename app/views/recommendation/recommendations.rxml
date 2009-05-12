@@ -1,0 +1,41 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title(@title)
+    xml.link(@web_link)
+    xml.description(@title)
+    xml.language('en-uk')
+      for recommendation in @recommendations
+        xml.item do
+          xml.title(recommendation.recommended_artist.name)
+          sample_track_url = recommendation.recommended_artist.get_sample_track_url()
+          
+          description = ""
+          description += recommendation.recommended_artist.get_summary()
+          description += "<br/><br/>" if recommendation.recommended_artist.get_summary() != ""
+          if sample_track_url != ""
+            description += "<a href='#{sample_track_url}'>sample track</a>"
+          else
+            description += "sample track"
+          end
+          description += "&nbsp;&nbsp;"
+          description += RecommendationHelper::get_elsewhere_strip(recommendation) + "<br/>"
+          description += RecommendationHelper::get_sources(recommendation)
+          xml.description(description)
+          
+          if recommendation.time
+            xml.pubDate(recommendation.time.strftime("%a, %d %b %Y %H:%M:%S %z"))
+          else
+            xml.pubDate(Time.new().strftime("%a, %d %b %Y %H:%M:%S %z"))
+          end
+          
+          if sample_track_url != ""
+            xml.enclosure(:url => sample_track_url, :type => "audio/mpeg")
+          end
+          
+          xml.link("http://theperceptron.com/recommendation/show/" + recommendation.id.to_s)
+          xml.guid("http://theperceptron.com/recommendation/show/" + recommendation.id.to_s)
+        end
+      end
+  }
+}

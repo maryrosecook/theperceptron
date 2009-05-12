@@ -1,0 +1,12 @@
+<% if @logged_in %>
+	<% if @unsubscribed %>
+		<span id="automatron_twitter_subscribe">
+			<%= render(:partial => 'automatron_twitter_subscribe') %>
+		</span>
+	<% elsif @subscribed %>
+		<span id="automatron_twitter_subscribe">
+			<%= render(:partial => 'automatron_twitter_unsubscribe')%>
+		</span>
+	<% end-%>
+	<br/>
+<% end-%>

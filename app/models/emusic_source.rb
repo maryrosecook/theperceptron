@@ -1,0 +1,2 @@
+class EmusicSource < Source
+end

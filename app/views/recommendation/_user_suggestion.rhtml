@@ -1,0 +1,10 @@
+<span id="user_suggestion_link"><h2>
+	<%= link_to_remote("Add your own recommendation", { :url => {}, :loading => "Element.hide('user_suggestion_link');
+																																							 Element.show('user_suggestion_form');"}) %>
+</h2></span>
+
+<span id="add_user_suggestion_result" style="display:none;"></span>
+
+<span id="user_suggestion_form" style="display:none;">
+	<%= render(:partial => "user_suggestion_form") %>
+</span>

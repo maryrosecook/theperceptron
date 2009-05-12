@@ -1,0 +1,10 @@
+<div class="page_content_holder">
+	<h1>Source weights</h1><br/>
+	
+	<%= render(:partial => 'source_grade_table')%>
+	
+	<% if logged_in? && current_user.admin %>
+		<%= link_to "Recalculate source grades", :action => "source_grades", :params => {:recalculate => 'true'} %> | 
+		<%= link_to "Show extra information", :action => "source_grades", :params => {:extras => 'true'} %><br/>
+	<% end-%>
+</div><br/>

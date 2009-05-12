@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.playlist(:version => "0", :xmlns => "http://xspf.org/ns/0/"){
+  xml.title("yeah")
+  xml.creator("yeah")
+  xml.info("yeah")
+  xml.location("yeah")
+  xml.trackList{
+    for recommendation in @recommendations
+      recommended_artist = recommendation.recommended_artist
+      if recommended_artist.get_sample_track_url() != ""
+        xml.track do
+          xml.title(recommended_artist.name)
+          xml.location(recommended_artist.get_sample_track_url())
+          xml.meta("mp3", :rel => "type")
+        end
+      end
+    end
+  } 
+}

@@ -1,0 +1,65 @@
+<%= render(:partial => 'playlist_setup') %>
+
+<div class="page_content_holder">
+	<h1>Playlist</h1><br/>
+
+	<% if @recommendations.length > 0 %>		
+		Click a <img src="/images/playsong.gif"> to start playing.  Click 
+		a <span class="eg_visibility_link">+</span> to reveal an artist's details.<br/><br/>
+	
+		<strong>Or, <a href='/recommendation/playlist.m3u' target="_blank">play in iTunes</a></strong>.
+		<%= link_to_remote("Huh?", {:url => {}, :loading => "Element.toggle('playlist_instructions');
+																												 Element.toggle('spacer');"}) %>
+		<span id="playlist_instructions" style="display:none;">
+			<ol>
+				<li>Click on 'play in iTunes'</a>.</li>
+				<li>Save the playlist.</li>
+				<li>Drag and drop it onto your mp3 player (iTunes, WinAmp, whatever).</li>
+			</ol>
+		</span>
+		<span id="spacer"><br/><br/></span>
+	
+		<% @i = 0 %>
+		<table class="saved_items">
+			<% for @recommendation in @recommendations %>
+				<% @artist = @recommendation.recommended_artist %>
+				<% track_available = @artist.get_sample_track_url() != "" %>
+				<% @content_style = "display:none;" %>
+				<tr id="playlist_item<%=@artist.id%>">
+					<!-- visibility -->
+					<td class="visibility_link">
+						<span id='hide_link<%=@recommendation.id%>' onclick="Element.hide('hide_link<%=@recommendation.id%>');
+																												 				 Element.show('show_link<%=@recommendation.id%>');
+																												 				 Effect.BlindUp('content<%=@recommendation.id%>', { duration: 0.3 });" style="display:none;">-</span>
+						<span id='show_link<%=@recommendation.id%>' onclick="Element.hide('show_link<%=@recommendation.id%>');
+																																 Element.show('hide_link<%=@recommendation.id%>');
+																																 Effect.BlindDown('content<%=@recommendation.id%>', { duration: 0.3 });">+</span>
+					</td>
+					
+					<!-- name -->
+					<td class="content">
+						<%= link_to "#{@artist.name}", :controller => "recommendation", :action => "show", :id => @recommendation.id %>
+
+						<div id="content<%=@recommendation.id%>" style="<%= @content_style %>">
+							<%= render(:partial => 'artist/content' ) %>
+						</div>
+					</td>
+					
+					<!-- play -->
+					<td class="saved_play_stop">
+						&nbsp;
+						<% if track_available %>
+							<%= render(:partial => 'shared/counter_play')%>
+							<% @i += 1 %>
+						<% end-%>
+					</td>
+				</tr>
+			<% end-%>
+		</table>
+
+		<div id="openplayer" class="flash_player"></div>
+		<%= javascript_include_tag 'opentape' %>
+	<% else %>
+		Click 'add to playlist' on recommendations you like the look of.
+	<% end-%>
+</div>

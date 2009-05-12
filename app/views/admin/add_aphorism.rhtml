@@ -1,0 +1,14 @@
+<div class="page_content_holder">
+	<h1>Add aphorism</h1><br/>
+	
+	<% form_tag do -%>	
+		<table class="">
+			<tr>
+				<td class="field" colspan=1><%= text_area :aphorism, :body, :rows => 5, :cols => 53 %></td>
+			</tr>
+			<tr>
+				<td class="field"><%= submit_tag "Add", :class => 'submit_button' %></td>
+			</tr>
+		</table>
+	<% end-%>
+</div>

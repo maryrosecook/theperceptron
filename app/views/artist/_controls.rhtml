@@ -1,0 +1,105 @@
+<div class="artist_controls">
+	<!-- like -->
+	<% if !@logged_in || !current_user.has_disliked?(@artist) %>
+		<% if @logged_in && current_user.has_liked?(@artist)%>
+			liked&nbsp;&nbsp;
+		<% else %>
+			<% if @recommendation %>
+				<% chain_str = @recommendation.chain() %>
+			<% else %>
+				<% chain_str = "" %>
+			<% end-%>
+			<span id='like<%=@artist.id%>'>
+				<span id='like_link<%=@artist.id%>'>
+				<%= link_to_remote("like",
+													 	{:url => {:controller => 'link_rating', :action => 'like', :artist_id => @artist.id, :chain_str => chain_str },
+													 	:loading => "Element.hide('like_link#{@artist.id}');
+																				Element.show('liked_text#{@artist.id}');
+																				Element.hide('dislike#{@artist.id}');"}) %>&nbsp;&nbsp;
+				</span>
+				<span id="liked_text<%=@artist.id%>" style="display:none;">liked&nbsp;&nbsp;</span>
+			</span>
+		<% end %>
+	<% end-%>
+	
+	<!-- dislike -->
+	<% if !@logged_in || !current_user.has_liked?(@artist) %>
+		<% if @logged_in && current_user.has_disliked?(@artist)%>
+			disliked&nbsp;&nbsp;
+		<% else %>
+			<% if @recommendation %>
+				<% chain_str = @recommendation.chain() %>
+			<% else %>
+				<% chain_str = "" %>
+			<% end-%>
+			<span id='dislike<%=@artist.id%>'>
+				<span id='dislike_link<%=@artist.id%>'>
+					<%= link_to_remote("dislike",
+														 	{:url => {:controller => 'link_rating', :action => 'dislike', :artist_id => @artist.id, :chain_str => chain_str },
+														 	:loading => "Element.hide('dislike_link#{@artist.id}');
+																					Element.show('disliked_text#{@artist.id}');
+																					Element.hide('like#{@artist.id}');"}) %>&nbsp;&nbsp;
+				</span>
+				<span id="disliked_text<%=@artist.id%>" style="display:none;">disliked&nbsp;&nbsp;</span>
+			</span>
+		<% end %>
+	<% end-%>
+	
+	<!-- playlist -->
+	<% if @recommending || @playlist %>
+		<% if @logged_in && @recommendation.saved?() %>
+			<% save_link_style = "display:none;" %>
+			<% unsave_link_style = "" %>
+		<% else %>
+			<% save_link_style = "" %>
+			<% unsave_link_style = "display:none;" %>
+		<% end %>
+		
+		<% playlist_removal_js = "" %>
+		<% if @playlist %>
+			<% playlist_removal_js = "Element.hide('playlist_item#{@artist.id}');" %>
+		<% end-%>
+		<span id='save_link<%=@artist.id%>' style="<%=save_link_style%>">
+			<%= link_to_remote("add to playlist",
+												 	{:url => {:controller => 'recommendation', :action => 'switch_save_state', :recommendation_id => @recommendation.id, :new_state => Recommendation::SAVED },
+												 	:loading => "Element.hide('save_link#{@artist.id}');
+																			 Element.show('unsave_link#{@artist.id}');"}) %>
+		</span>
+		<span id="unsave_link<%=@artist.id%>" style="<%=unsave_link_style%>">
+			<%= link_to_remote("remove from playlist",
+												 	{:url => {:controller => 'recommendation', :action => 'switch_save_state', :recommendation_id => @recommendation.id, :new_state => Recommendation::UNSAVED },
+												 	:loading => "Element.show('save_link#{@artist.id}');
+																			 Element.hide('unsave_link#{@artist.id}');
+																			 #{playlist_removal_js}"}) %>
+		</span>
+		&nbsp;
+	<% end-%>
+	
+	<!-- flag -->
+	<% if @logged_in && current_user.has_flagged?(@artist)%>
+		flagged
+	<% else %>
+		<span id='flag_link<%=@artist.id%>'>
+			<%= link_to_remote("flag",
+											 	{:url => {},
+											 	:loading => "Element.hide('flag_link#{@artist.id}');
+																		Element.show('flag_form#{@artist.id}');"}) %>
+		</span>
+		<span id="flag_form<%=@artist.id%>" style="display:none;">
+			<br/>
+			<form action="/artist/flag" method="post" onsubmit="new Ajax.Updater('flag_result<%=@artist.id%>', '/artist/flag', {asynchronous:true, evalScripts:true, onLoading:function(request){Element.hide('flag_form<%=@artist.id%>');Element.show('flag_result<%=@artist.id%>');}, parameters:Form.serialize(this)}); return false;">	
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+				<%= hidden_field :flag, :artist, :value => @artist.id %>
+		
+				<%= text_field :flag, :reason, :size => 38, :class => 'inline_text_field', :onclick => "this.value=''" %>
+				<%= submit_tag "Flag", :class => "inline_submit_button" %>
+				or
+				<%= link_to_remote("cancel",
+												 	{:url => {},
+												 	:loading => "Element.show('flag_link#{@artist.id}');
+																			Element.hide('flag_form#{@artist.id}');"}) %>
+			</form>
+		</span>
+		<span id="flag_result<%=@artist.id%>" style="display:none;"></span>
+	<% end-%>
+</div>

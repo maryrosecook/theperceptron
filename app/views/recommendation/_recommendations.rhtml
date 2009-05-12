@@ -1,0 +1,6 @@
+<% if @recommendations && @recommendations.length > 0 %>
+	<% for @recommendation in @recommendations %>
+		<% @artist = @recommendation.recommended_artist %>
+		<%= render(:partial => "artist/summary")%>
+	<% end-%><br/>
+<% end-%>

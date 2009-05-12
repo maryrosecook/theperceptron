@@ -1,0 +1,63 @@
+<div class="page_content_holder">
+	<h1>Voxpomp</h1><br/>
+
+	Find Parliamentary statements that include certain words.  Cross reference
+	with news stories of the time.  Written for 
+	<a href='http://rewiredstate.org'>Rewired State / Hack The Government</a>.<br/><br/>
+	
+
+	<% form_tag do -%>	
+		<table class="login_table">
+			<tr>
+				<td class="field_title" width=150>Search</td>
+				<td class="field"><input type="text" name="search" class="text_field"></td>
+			</tr>
+			<tr>
+				<td class="field_title" width=150>MP (optional)</td>
+				<td class="field"><input type="text" name="mp_name" class="text_field"></td>
+			</tr>
+			<tr>
+				<td class="field_title"></td>
+				<td class="field"0><%= submit_tag "Search", :class => 'submit_button' %></td>
+			</tr>
+		</table>
+	<% end-%>
+
+	<% if @statements %>
+		<br/>
+		<strong>
+			<%= @statements.length %>
+			<%= @statements.length == 1 ? "statement" : "statements" %>
+			found.
+		</strong>
+		<br/><br/>
+		<% if @statements.length == 0 %>
+			Try your search again. Sometimes the external data sources are a bit flaky.
+		<% end-%>
+		
+		<% i = 1 %>
+		<% for statement in @statements %>
+			<div class="statement"><strong><%= i %>.</strong> <%= statement[:statement] %></div>
+			<div class="stater">
+				<%= statement[:mp].to_s + ", " + statement[:date].to_s %>
+				<a href='http://theyworkforyou.com<%=statement[:url]%>'>full statement</a>
+			</div>
+			
+			<div class="vox_news">
+				<% if statement[:news].length > 0 %>
+					<% for news_item in statement[:news] %>
+						<a href='<%=news_item[:url]%>'><%= news_item[:title] %></a> <span class="news_source">[<%= news_item[:source] %>]</span><br/>
+					<% end-%>
+				<% else %>
+					<a href='<%= statement[:news_url] %>'>Search Google News</a>
+				<% end-%>
+			</div>
+			
+			<br/>
+			<% i += 1 %>
+		<% end-%>
+	<% elsif @no_search %>
+		<br/>
+		<strong>You must specify some words to search for.</strong>
+	<% end-%>
+</div><br/>

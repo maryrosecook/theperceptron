@@ -1,0 +1,15 @@
+<div class="page_content_holder">
+	<h1>Claim user</h1><br/>
+	
+	Or <%= link_to "login", :controller => "account", :action => "login" %> with another account.<br/><br/>
+	
+	<% form_tag do -%>
+		<table class="signup_table">
+			<%= render(:partial => 'signup_form') %>
+			<tr>
+				<td class="field_title"></td>
+				<td class="field"><%= submit_tag "Claim account", :class => 'submit_button', :disable_with => "Claiming" %></td>
+			</tr>
+		</table>
+	<% end-%>
+</div><br/>

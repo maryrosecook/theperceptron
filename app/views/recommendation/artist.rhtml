@@ -1,0 +1,52 @@
+<div class="page_content_holder">
+	
+	<% if @search %>
+		<% search_field_value = sanitize(@search.body) %>
+		<% search_field_class = "active_preloaded_field"%>
+	<% else %>
+		<% search_field_value = Search::SEARCH_CANNED %>
+		<% search_field_class = "inactive_preloaded_field"%>
+	<% end-%>
+
+	<% form_tag '/recommendation' do %>
+		<input class="home_page_text_field <%= search_field_class %>" id="search_body" name="query" size="29" type="text" value="<%= search_field_value %>"
+					 onfocus="processPreloadedText(this, 'onfocus', '<%=Search::SEARCH_CANNED%>');"
+					 onblur="processPreloadedText(this, 'onblur', '<%=Search::SEARCH_CANNED%>');" />
+					
+		<br/>
+		<input name="h" type="hidden" value="true" />
+		<%= submit_tag "Recommend", :class => "home_page_submit_button" %>
+	<% end %><br/>
+
+	<!-- recommendation heralding -->
+	<% if @recommendations %>
+		<br/>
+		<div class="recommendation_herald">
+			<% if @recommendations.length > 0 %>
+			<% recommendation_word = @search.result_count > 1 ? "recommendations" : "recommendation" %>
+				<%= @search.result_count.to_s + " " + recommendation_word %> for 
+				<strong>
+					<% if logged_in?() && current_user.admin?() %>
+						<%= link_to "#{@search.search_artist.name}", :controller => "artist", :action => "show", :id => "#{@search.search_artist.safe_name}" %>.
+					<% else %>
+						<%= @search.search_artist.name %>.
+					<% end-%>
+				</strong><br/>
+			<% end-%>
+		</div>
+	<% elsif @search && @search.body %>
+		<br/>
+		<%= render(:partial => 'recommendation/no_recommendations')%>
+	<% end-%>
+	
+	<!-- did you mean -->
+	<%= render(:partial => 'search/did_you_mean')%><br/>
+			
+	<!-- recommendations -->
+	<%= render(:partial => 'recommendation/recommendations')%>
+	
+	<!-- user suggestion -->
+	<% if @recommendations && @recommendations.length > 0 %>
+		<%= render(:partial => 'recommendation/user_suggestion')%>
+	<% end-%><br/><br/>
+</div>

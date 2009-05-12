@@ -1,0 +1,4 @@
+<%= render(:partial => 'barren_labels') %>
+<% for barren_label in @barren_labels %>
+	<a href='http://en.wikipedia.org/wiki/<%=barren_label%>'><%= barren_label %></a><br/>
+<% end-%>

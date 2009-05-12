@@ -1,0 +1,7 @@
+<% for recommendation in @recommendations %>
+<% if recommended_artist = recommendation.recommended_artist %>
+<% if recommended_artist.get_sample_track_url() != "" %>
+<%= recommended_artist.get_sample_track_url() %>
+<% end-%>
+<% end-%>
+<% end-%>

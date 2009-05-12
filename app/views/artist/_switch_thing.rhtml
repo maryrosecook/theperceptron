@@ -1,0 +1,32 @@
+<% if logged_in? && current_user.admin == 1 %>
+	<span id='<%=thing%>_link<%=@artist.id%>'>
+		<!-- label -->
+		<% if thing == "sample_track_url" %>
+			<% thing_display_name = "track" %>
+		<% elsif thing == "myspace_url" %>
+			<% thing_display_name = "myspace" %>
+		<% elsif thing == "summary" %>
+			<% thing_display_name = "wikipedia" %>
+		<% else %>
+			<% thing_display_name = thing %>
+		<% end-%>
+		
+		<% if @artist.get_thing(thing) != "" %>
+			<%= thing_display_name %>
+			<!-- admin links -->
+			<%= link_to_remote("r",
+												 	{:url => {:controller => 'artist', :action => 'switch_thing', :artist_id => @artist.id, :thing => "#{thing}", :act => "#{Artist::REFRESH}" },
+												 	:loading => "Element.hide('#{thing}_link#{@artist.id}');
+																			Element.show('r#{thing}_text#{@artist.id}');"}) %>
+			<%= link_to_remote("x",
+												 	{:url => {:controller => 'artist', :action => 'switch_thing', :artist_id => @artist.id, :thing => "#{thing}", :act => "#{Artist::REJECT}" },
+												 	:loading => "Element.hide('#{thing}_link#{@artist.id}');
+																			Element.show('x#{thing}_text#{@artist.id}');"}) %>
+		<% else %>
+			<span class="missing_data"><%= thing_display_name %></span>
+		<% end %>														
+	</span>
+	
+	<span id="r<%=thing%>_text<%=@artist.id%>" style="display:none;"><%= thing_display_name %> r</span>
+	<span id="x<%=thing%>_text<%=@artist.id%>" style="display:none;"><%= thing_display_name %> x</span>
+<% end-%>&nbsp;

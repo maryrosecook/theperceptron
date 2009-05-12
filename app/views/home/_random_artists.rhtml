@@ -1,0 +1,13 @@
+<% if @random_artists %>
+	e.g. 
+	<% i = 0 %>
+	<% for random_artist in @random_artists %>
+		<% if i != @random_artists.length - 1 %>
+			<a href="/recommendation/artist/<%= random_artist.name_to_query() %>"><%= random_artist.name %></a> • 
+		<% else %>
+			<a href="/recommendation/artist/<%= random_artist.name_to_query() %>"><%= random_artist.name %></a>
+		<% end-%>
+		
+		<% i += 1 %>
+	<% end-%>
+<% end-%>

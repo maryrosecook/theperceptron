@@ -1,0 +1,11 @@
+log/*.log
+tmp/**/*
+.DS_Store
+script/pull_remote_db
+script/pull_remote_db_and_sync
+script/sync_local_copy_remote_db
+Capfile
+config/database.yml
+config/deploy.rb
+config/config.yml
+

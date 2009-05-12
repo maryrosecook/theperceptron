@@ -1,0 +1,8 @@
+<div class="page_content_holder">
+	<% if @recommendation %>
+		<% @artist = @recommendation.recommended_artist %>
+		<%= render(:partial => "artist/summary")%>
+	<% else %>
+		Sorry, could not find that recommendation.
+	<% end-%>
+</div>

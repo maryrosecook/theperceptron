@@ -1,0 +1,12 @@
+<div class="page_content_holder">
+	<% for @unresolved_flag in @unresolved_flags %>
+		<% @artist = @unresolved_flag.artist %>
+		<%= render(:partial => "flag/resolution")%><br/>
+		<%= render(:partial => "artist/summary")%><br/><br/>
+	<% end-%>
+	
+	<div>
+		<%= link_to 'Previous', { :offset => @offset.to_i - 20, :limit => 20 } if @offset.to_i - 20 >= 0 %>
+		<%= link_to 'Next', { :offset => @offset.to_i + 20, :limit => 20 } if @unresolved_flags.length > 0 %>
+	</div>
+</div>

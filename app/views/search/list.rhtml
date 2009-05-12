@@ -1,0 +1,25 @@
+<div class="page_content_holder">
+	<h1>Searches</h1><br/>
+
+	<table class="admin_table">
+	  <tr>
+			<td class="admin_table_td">Body</td>
+			<td class="admin_table_td">R</td>
+			<td class="admin_table_td">Time</td>
+	  </tr>
+
+		<% for search in @searches %>
+		  <tr>
+				<td class="admin_table_td"><%= search.body %></td>
+				<td class="admin_table_td"><a href="/recommendation/artist/<%=search.body%>"><%= search.result_count %></a></td>
+				<td class="admin_table_td"><%= Util::f_date_time(search.time) %></td>
+		  </tr>
+		<% end %>
+	</table>
+
+	<br/>
+	<div>
+		<%= link_to 'Previous', { :offset => @offset.to_i - 20, :limit => 20 } if @offset.to_i - 20 >= 0 %>
+		<%= link_to 'Next', { :offset => @offset.to_i + 20, :limit => 20 } if @searches.length > 0 %>
+	</div>
+</div>

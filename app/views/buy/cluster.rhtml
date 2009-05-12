@@ -1,0 +1,6 @@
+<% for artist_link in @ranked_artist_links %>
+	<%= @artist_links[artist_link] %>: 
+	<%= @artist_ids_and_names[artist_link[0]] %>,
+	<%= @artist_ids_and_names[artist_link[1]] %>
+	<br/>
+<% end-%>

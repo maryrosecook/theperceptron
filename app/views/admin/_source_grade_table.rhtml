@@ -1,0 +1,27 @@
+<table class="admin_table">
+	<tr>
+		<td class="admin_table_td">Source</td>
+		<td class="admin_table_td">Weight</td>
+		<% if @extras %>
+			<td class="admin_table_td">Links</td>
+			<td class="admin_table_td">Positives</td>
+		<% end-%>
+	</tr>
+	
+	<% for source in @sources %>
+	  <tr>
+			<td class="admin_table_td">
+				<% if Util.ne(source.link) %>
+					<a href='<%=source.link%>'><%= source.name.to_s %></a>
+				<% else %>
+					<%= source.name.to_s %>
+				<% end-%>
+			</td>
+			<td class="admin_table_td"><%= (source.grade*100).to_s[0..3] %>%</td>
+			<% if @extras %>
+				<td class="admin_table_td"><%= source.get_link_count().to_s %></td>
+				<td class="admin_table_td"><%= source.get_positive_count().to_s %></td>
+			<% end-%>
+	  </tr>
+	<% end %>
+</table><br/>

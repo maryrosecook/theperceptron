@@ -1,0 +1,24 @@
+<div class="page_content_holder">
+	<h1>Automatron</h1>
+	
+	<% if @logged_in %>
+		<!-- rss -->
+		<a href='http://feeds.feedburner.com/theperceptron'><img src="/images/rss.gif" width=8 height=8 border=0></a>
+		<a href='/recommendation/automatron/<%=current_user.username%>?format=xml'>Follow the Automatron</a><br/>
+	<% end-%><br/>
+	
+	These recommendations are based on your
+	behaviour on the site, and are updated every week.<br/><br/>
+	
+	<% if @logged_in %>
+		<% if @recommendations.length > 0 %>
+			<%= render(:partial => 'recommendation/recommendations') %>
+		<% else %>
+			<strong>No recommendations, yet.</strong> If you have just joined, wait 24 hours.
+		<% end-%>
+	<% else %>
+		<%= link_to "Login", :controller => "account", :action => "login" %> or
+		<%= link_to "sign up", :controller => "account", :action => "signup" %>
+		to get automatronical.
+	<% end-%>
+</div>

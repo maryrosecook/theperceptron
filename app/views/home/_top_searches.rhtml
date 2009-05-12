@@ -1,0 +1,13 @@
+<table class="admin_table">
+  <tr>
+		<td class="admin_table_td"><strong>Last week</strong></td>
+		<td class="admin_table_td"><strong>This week</strong></td>
+  </tr>
+
+	<% for i in (0..9) %>
+	  <tr>
+			<td class="admin_table_td"><%= @most_searched_bands_last_week[i] %></td>
+			<td class="admin_table_td"><%= @most_searched_bands_this_week[i] %></td>
+	  </tr>
+	<% end %>
+</table>

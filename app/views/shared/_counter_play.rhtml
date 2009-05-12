@@ -1,0 +1,7 @@
+<span class="saved_clock"></span>
+<span id='play_link<%=@i%>' class="" onclick="Element.hide('play_link<%=@i%>');
+																						 Element.show('stop_link<%=@i%>');
+																						 togglePlayback('song<%=@i%>');"><img src="/images/playsong.gif"></span>
+<span id='stop_link<%=@i%>' class="" onclick="Element.hide('stop_link<%=@i%>');
+																						 Element.show('play_link<%=@i%>');
+																					   togglePlayback('song<%=@i%>');" style="display:none;"><img src="/images/stopsong.gif"></span>

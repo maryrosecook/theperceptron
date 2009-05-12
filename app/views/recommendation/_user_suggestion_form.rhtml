@@ -1,0 +1,7 @@
+<form action="/recommendation/add_user_suggestion" method="post"
+			onsubmit="new Ajax.Updater('add_user_suggestion_result', '/recommendation/add_user_suggestion', {asynchronous:true, evalScripts:true, onLoading:function(request){Element.show('add_user_suggestion_result');}, parameters:Form.serialize(this)}); return false;">
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	<%= hidden_field :search, :search_artist_id %>
+	<%= text_field :recommended_artist, :name, :class => "suggestion_text_field" %>
+	<%= submit_tag "Add", :class => "suggestion_submit_button" %>
+</form><br/>

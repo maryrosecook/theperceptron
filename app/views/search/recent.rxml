@@ -1,0 +1,17 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.searches{
+  for search in @searches
+    xml.search do
+      xml.time(search.time)
+      xml.body(search.body)
+      
+      search_artist = ""
+      search_artist = search.search_artist.name if search.search_artist
+      xml.artist(search_artist)
+      
+      username = ""
+      username = search.user.username if search.user
+      xml.username(username)
+    end
+  end
+}

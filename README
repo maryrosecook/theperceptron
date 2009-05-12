@@ -1,0 +1,77 @@
+the perceptron
+Astute music recommendations.
+
+See in action: http://theperceptron.com
+
+By: maryrosecook
+http://maryrosecook.com
+maryrosecook@maryrosecook.com
+
+---
+
+The site's recommendations come from artists who admire each other, music critics, artists who feature on the same mp3 blog, lists of artists who are on the same label, artists who often appear on mixtapes together, people's music buying habits, user suggestions and lists of artists who have played shows together. Further, the site learns from your behaviour and skews recommendations towards your music taste.
+
+---
+
+Initial setup
+
+- Pull the code to your machine.
+
+- Create a folder called log in the root of your app.
+
+- Set up the database:
+	- Create the database.
+	- Create a database.yml file in config/
+	- Add your dev database details. e.g:
+			development:
+			    adapter: mysql
+			    database: theperceptron_development
+			    username: root
+			    password: 
+			    host: localhost
+	- Create the database structure:
+		- In your terminal:
+				cd route/to/theperceptron/folder
+				rake db:schema:load
+
+- Get the required API keys:
+	- Yahoo: http://developer.yahoo.com/wsregapp/index.php
+	- Last.fm: http://www.last.fm/api/account
+
+- Configure the application:
+	- Go into the config/ directory and rename the config.example.yml file to config.yml
+	- Fill in your Yahoo API key and Last.fm API key.
+
+- Start the app:
+	- In your terminal:
+		- Go into the application directory (theperceptron/).
+		- ruby script/server
+
+- Create your admin user:
+	- Navigate to your locally running version of the perceptron.
+	- Click the sign up link, enter your details and save.
+	- In your database admin application:
+		- Go into the users table.
+		- Find the user your just created.
+		- Change the 0 in the admin column to a 1.
+		
+- Administration help:
+	- You have an array of administration links (the cryptic letters) in the site's menu bar.
+	- You also have an admin bar below each recommendation.
+		- website
+			- r: clear the website URL stored for this artist.
+			- x: clear website URL stored for this artist *and* reject that specific string as wrong so it will not be scraped in the future.
+		- myspace
+			- r: clear the Myspace URL stored for this artist.
+			- x: clear myspace URL stored for this artist *and* reject that specific string as wrong so it will not be scraped in the future.
+		- wikipedia
+			- r: clear the Wikipedia URL stored for this artist.
+			- x: clear Wikipedia URL stored for this artist *and* reject that specific string as wrong so it will not be scraped in the future.
+		- track
+			- r: clear the sample track URL stored for this artist.
+			- x: clear sample track URL stored for this artist *and* reject that specific string as wrong so it will not be scraped in the future.
+		- cn: change artist's name to something else.
+		- an: add an alternative name to this artist e.g. add Bjork to Björk
+		- m: merge all this artist's data with all the data for another artist.
+	- x: delete this artist.
+	- 27215: id of this artist in the artists table.

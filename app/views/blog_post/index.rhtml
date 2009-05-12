@@ -1,0 +1,45 @@
+<div class="page_content_holder">
+	<!-- title -->
+	<h1><a href='/blog' class="blog_header">Blog</a>
+		<% if @admin_logged_in %>
+			<%= link_to "new", :action => "new" %>
+		<% end-%>
+	</h1>
+	
+	<!-- rss -->
+	<a href='http://feeds.feedburner.com/theperceptron'><img src="/images/rss.gif" width=8 height=8 border=0></a>
+	<a href='http://feeds.feedburner.com/theperceptron'>Follow this blog</a>
+	
+	<br/><br/>
+
+	<!-- posts -->
+	<div class="content_area">
+		<!-- show unpublished posts -->
+		<% for @blog_post in @unpublished_posts %>
+			<% @showing_published = false %>
+			<%= render :partial => '/blog_post/display_blog_post' %>
+		<% end-%>
+
+		<!-- show published posts -->
+		<% for @blog_post in @published_posts %>
+			<% @showing_published = true %>
+			<%= render :partial => '/blog_post/display_blog_post' %>
+		<% end-%>
+
+		<% if @new_older_offset || @new_newer_offset %>
+			<div class="blog_navigation">
+				<% if @new_older_offset %>
+					<%= link_to "< Older Posts", :action => "index", :params => {:offset => @new_older_offset} %>
+				<% else %>
+					< Older Posts
+				<% end %>
+				&nbsp; &nbsp;
+				<% if @new_newer_offset %>
+					<%= link_to "Newer Posts >", :action => "index", :params => {:offset => @new_newer_offset} %>
+				<% else %>
+					Newer Posts >
+				<% end%>
+			</div>
+		<% end-%>
+	</div>
+</div><br/>

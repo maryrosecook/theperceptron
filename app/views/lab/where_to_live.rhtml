@@ -1,0 +1,49 @@
+<div class="page_content_holder">
+	<% if !@cities_artists %>
+		<h1>Where should I live?</h1><br/>
+
+		I wrote this hack for the <a href='http://www.last.fm/group/Hack+Day'>last.fm Hack Day 2008</a>.
+		It takes your last.fm username and tells you where you
+		should be living, based on where your favourite bands are playing the most gigs.
+		<br/><br/>
+
+		<% form_tag do -%>	
+			<table class="login_table">
+				<tr>
+					<td class="field_title" width=150>last.fm username</td>
+					<td class="field"><input type="text" name="username" class="text_field"></td>
+				</tr>
+				<tr>
+					<td class="field_title"></td>
+					<td class="field"0><%= submit_tag "Calculate (1 minute)", :class => 'submit_button' %></td>
+				</tr>
+			</table>
+		<% end-%>
+	<% else %>
+		<% if @sorted_cities && @sorted_cities.length > 0 %>
+			<h1><%= @username %>, move to <strong><%= @sorted_cities[0] %></strong></h1>
+			<a href='/lab/where_to_live'>Try another username</a><br/><br/>
+			
+			<table class="admin_table">
+				<% for event_city in @sorted_cities %>
+					<tr>
+						<td class="admin_table_td">
+							<strong><%= event_city %></strong>: 
+						</td>
+						<td class="admin_table_td">
+							<% i = 0 %>
+							<% for artist_name in @cities_artists[event_city] %>
+								<% if i != 0 %>|<% end-%>
+									<a href='/lab/lastfm_artist_page?artist_name=<%=artist_name%>'><%= artist_name %></a>
+								<% i += 1 %>
+							<% end-%>
+						</td>
+					</tr>
+				<% end-%>
+				
+			</table>
+		<% else %>
+			Either you don't exist, or you haven't listened to much music.
+		<% end-%>
+	<% end-%>
+</div><br/>

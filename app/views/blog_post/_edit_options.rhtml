@@ -1,0 +1,10 @@
+<span class="blog_post_edit_options">
+	<% if @admin_logged_in %>
+		<% if @iPhone %>
+			<%= link_to "Edit", :controller => "blog_post", :action => "edit_iphone", :id => @blog_post.id %>
+		<% else %>
+			<%= link_to "Edit", :controller => "blog_post", :action => "edit", :id => @blog_post.id %>
+		<% end-%>
+		<%= link_to "Delete", :controller => "blog_post", :action => "destroy", :id => @blog_post.id %>
+	<% end-%>
+</span>

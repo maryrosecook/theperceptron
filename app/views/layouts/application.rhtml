@@ -1,0 +1,32 @@
+<html> 
+	<head>
+		<title>the perceptron - astute music recommendations</title>
+		
+		<!-- js -->
+		<%= javascript_include_tag 'application', 'swfobject', 'prototype', 'effects', 'deliciousmp3', 'si.files' %>
+
+		<!-- css -->
+		<%= stylesheet_link_tag "main", :media => "all" %>
+
+		<!-- meta -->
+		<meta name = "viewport" content = "width=device-width">
+		
+		<!-- rss -->
+		<% if @blog %>
+			<link type="application/rss+xml" rel="alternate" title="the perceptron blog" href="http://feeds.feedburner.com/theperceptron">
+		<% end-%>
+	</head> 
+	
+	<body>
+		<div class="main_title"><a href='/' class="main_title">the perceptron</a></div>
+		<div class="sub_title"><a href='/' class="sub_title">astute music recommendations</a></div>
+		
+		<%= render(:partial => 'home/top_nav') %><br/>
+		
+		<%= @content_for_layout %>
+		
+		<%= render(:partial => 'home/footer') %>
+		<%= render(:partial => 'home/analytics') %>
+		<%= render(:partial => 'shared/file_upload_styler')%>
+	</body>
+</html>

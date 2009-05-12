@@ -1,0 +1,13 @@
+<% if @found_artists && @found_artists.length > 1 %>
+	<span class="did_you_mean">Did you mean:</span>
+		<% i = 1 %>
+		<% while i < 4 && i < @found_artists.length %>
+			<% if i != 1 %>
+				or
+			<% end-%>
+				<%= link_to "#{@found_artists[i].name}", "/recommendation/artist/#{@found_artists[i].name_to_query()}" %>
+			<% i += 1 %>
+		<% end-%>
+		<br/>
+
+<% end-%>

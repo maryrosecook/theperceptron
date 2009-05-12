@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+	if(!navigator.userAgent.match(/iPhone|iPod/i)) {			
+		var flashvars = {
+			type: "xml",
+			shuffle: "false",
+			repeat: "list",
+			file: "/recommendation/saved_xml"
+		}
+		var params = {
+			allowscriptaccess: "always"
+		}
+		var attributes = {
+		  id: "openplayer",
+		  name: "openplayer",
+		  styleclass: "flash_player"
+		}
+		swfobject.embedSWF('/mediaplayer.swf', "openplayer", "0", "0", "8.0.0", false, flashvars, params, attributes);
+	}
+
+</script>

@@ -1,0 +1,32 @@
+<% if @showing_published == true %>
+	<% content_class = "blog_post_published"%>
+<% else %>
+	<% content_class = "blog_post_unpublished"%>
+<% end-%>
+
+<% if @blog_post %>
+	<span class=<%= content_class %>>
+		<% if @blog_post.category == BlogPost::CAT_MAIN %>
+			<span class="blog_post_title">
+			 <%= link_to @blog_post.title, :controller => 'blog', :action => 'show', :id => @blog_post.id %>
+			</span>
+			<%= render :partial => '/blog_post/edit_options' %><br/>
+
+			<span class="blog_post_date"><%= @blog_post.get_f_date() %></span><br/><br/>
+			<span class="blog_post_content"><%= @blog_post.get_f_content() %></span>
+		
+		<% else %>
+			<strong>&raquo;</strong>
+			<span class="blog_post_content"><%= @blog_post.get_f_content() %></span>
+			<span class="blog_post_date"><%= @blog_post.get_f_date() %></span>
+			<% if @blog_post.tags != "" %>
+				<span class="blog_post_tags"><%= @blog_post.tags() %></span>
+			<% end-%>
+			<%= render :partial => '/blog_post/edit_options' %> 
+		
+		<% end-%>
+		<br/><br/><br/>
+	</span>
+<% else %>
+	You may not view this post
+<% end%>

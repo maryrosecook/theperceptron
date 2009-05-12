@@ -1,0 +1,13 @@
+<%= error_messages_for 'blog_post' %>
+
+<p>Title <br/>
+<%= text_field 'blog_post', 'title', {:size => 54, :class=> 'text_field'} %></p><br/>
+
+<p>
+<%= text_area 'blog_post', 'content', :cols => 53, :rows => 20 %></p><br/>
+
+<p><%= check_box 'blog_post', 'published' %> 
+<label for="blog_post_published">Published</label> </p><br/>
+
+<p>Tags <br/>
+<%= text_field 'blog_post', 'tags', {:size => 55, :class=> 'text_field'} %></p><br/>

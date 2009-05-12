@@ -1,0 +1,10 @@
+<div class="page_content_holder">
+	<h1>Recommendation sources</h1><br/>
+	
+	Underneath each recommendation, it explains why the artist was suggested.
+	Here is an expansion upon the explanations:<br/><br/>
+	
+	<% for source in @sources %>
+		* <strong><%= source.why %></strong>: <%= source.why_verbose %><br/>
+	<% end-%>
+</div><br/>

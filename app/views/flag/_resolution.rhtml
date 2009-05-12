@@ -1,0 +1,10 @@
+<span id="resolve_link<%=@unresolved_flag.id%>">
+	<%= link_to_remote("resolve",
+										 {:url => {:controller => 'flag', :action => 'resolve', :flag_id => @unresolved_flag.id },
+										 :loading => "Element.hide('resolve_link#{@unresolved_flag.id}');
+																	Element.show('resolve_text#{@unresolved_flag.id}');"}) %>
+																	
+	<%= @unresolved_flag.reason %>
+</span>
+
+<span id="resolve_text<%=@unresolved_flag.id%>" style="display:none;">resolved</span>

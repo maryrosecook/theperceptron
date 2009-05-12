@@ -1,0 +1,37 @@
+<div class="top_nav">
+	<!-- nav -->
+	<% if logged_in? && current_user.admin?() %>
+		&nbsp;<%= link_to "h", :controller => "admin", :action => "index" %>
+		&nbsp;<%= link_to "g", :controller => "admin", :action => "source_grades" %>
+		&nbsp;<%= link_to "d", :controller => "admin", :action => "data" %>
+		&nbsp;<%= link_to "f", :controller => "flag", :action => "list" %>
+		&nbsp;<%= link_to "l", :controller => "log", :action => "list" %>
+		&nbsp;<%= link_to "s", :controller => "search", :action => "list" %>
+		&nbsp;<%= link_to "u", :controller => "admin", :action => "user_suggestions" %>
+		&nbsp;<%= link_to "a", :controller => "admin", :action => "artist" %> &nbsp;&nbsp; 
+	<% end-%>
+	&nbsp;<%= link_to "playlist", :controller => "recommendation", :action => "playlist" %>
+	&nbsp;<%= link_to "automatron", :controller => "recommendation", :action => "automatron" %>
+	<% if logged_in? %>
+		<% if current_user.fake == 1 %>
+			&nbsp;&nbsp;&nbsp;<%= link_to "claim user", :controller => "account", :action => "claim" %> or <%= link_to "login other user", :controller => "account", :action => "login" %> 
+		<% end %>
+		<% if current_user.fake != 1%>
+			&nbsp;&nbsp;&nbsp;<%= link_to "logout", :controller => "account", :action => "logout" %>
+		<% end-%>
+	<% else %>
+		&nbsp;&nbsp;&nbsp;<%= link_to "login", :controller => "account", :action => "login" %> 
+		or <%= link_to "sign up", :controller => "account", :action => "signup" %>
+	<% end-%>
+</div>
+
+<!-- flash -->
+<div class="flash_container">
+	<% if flash[:notice]%>
+		<span class="flash">
+			<%= flash[:notice] %>
+		</span>
+	<% else %>
+		<br/>
+	<% end-%>
+</div>

@@ -1,0 +1,12 @@
+<div class="page_content_holder">
+	<h1>Stats</h1><br/>
+	
+	<h3>Most popular searches</h3><br/>
+	<%= render(:partial => 'top_searches') %>
+	<br/>
+	
+	<h3>Data source trust</h3><br/>
+	This table shows the reliability of each of the 
+	sources of recommendations used by the perceptron.  Higher numbers are better.<br/><br/>
+	<%= render(:partial => 'admin/source_grade_table') %>
+</div>

@@ -1,0 +1,90 @@
+<div class="admin_strip">
+	<!-- switches -->
+	<%= render(:partial => 'artist/switch_thing', :locals => {:thing => "#{Artist::WEBSITE}"}) %> <!-- switch website -->
+	<%= render(:partial => 'artist/switch_thing', :locals => {:thing => "#{Artist::MYSPACE_URL}"}) %> <!-- switch myspace -->
+	<%= render(:partial => 'artist/switch_thing', :locals => {:thing => "#{Artist::SUMMARY}"}) %> <!-- switch summary -->
+	<%= render(:partial => 'artist/switch_thing', :locals => {:thing => "#{Artist::SAMPLE_TRACK_URL}"}) %> <!-- switch track -->
+
+	<!-- rename -->
+	<span id='rename_link<%=@artist.id%>'>
+		<%= link_to_remote("cn",
+										 	{:url => {},
+										 	:loading => "Element.hide('rename_link#{@artist.id}');
+																	Element.show('rename_form#{@artist.id}');"}) %>
+	</span>
+	<span id="rename_form<%=@artist.id%>" style="display:none;">
+
+		<form action="/artist/rename" method="post" onsubmit="new Ajax.Updater('rename_result<%=@artist.id%>', '/artist/rename', {asynchronous:true, evalScripts:true, onLoading:function(request){Element.hide('rename_form<%=@artist.id%>');Element.show('rename_result<%=@artist.id%>');}, parameters:Form.serialize(this)}); return false;">	
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			<%= hidden_field :artist, :id, :value => @artist.id %>
+	
+			<%= text_field :artist, :name, :size => 17, :class => 'inline_text_field' %>
+			<%= submit_tag "R", :class => "inline_submit_button" %>
+			
+			<%= link_to_remote("c",
+											 	{:url => {},
+											 	:loading => "Element.show('rename_link#{@artist.id}');
+																		Element.hide('rename_form#{@artist.id}');"}) %>
+		</form>
+	</span>
+	<span id="rename_result<%=@artist.id%>" style="display:none;"></span>
+	&nbsp;
+	
+	<!-- other name -->
+	<span id='other_name_link<%=@artist.id%>'>
+		<%= link_to_remote("an",
+										 	{:url => {},
+										 	:loading => "Element.hide('other_name_link#{@artist.id}');
+																	Element.show('other_name_form#{@artist.id}');"}) %>
+	</span>
+	<span id="other_name_form<%=@artist.id%>" style="display:none;">
+
+		<form action="/artist/add_other_name" method="post" onsubmit="new Ajax.Updater('other_name_result<%=@artist.id%>', '/artist/add_other_name', {asynchronous:true, evalScripts:true, onLoading:function(request){Element.hide('other_name_form<%=@artist.id%>');Element.show('other_name_result<%=@artist.id%>');}, parameters:Form.serialize(this)}); return false;">	
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			<%= hidden_field :artist, :id, :value => @artist.id %>
+	
+			<%= text_field :artist, :name, :size => 17, :class => 'inline_text_field' %>
+			<%= submit_tag "A", :class => "inline_submit_button" %>
+			
+			<%= link_to_remote("c",
+											 	{:url => {},
+											 	:loading => "Element.show('other_name_link#{@artist.id}');
+																		Element.hide('other_name_form#{@artist.id}');"}) %>
+		</form>
+	</span>
+	<span id="other_name_result<%=@artist.id%>" style="display:none;"></span>
+	&nbsp;
+	
+	<!-- merge -->
+	<span id='merge_link<%=@artist.id%>'>
+		<%= link_to_remote("m",
+										 	{:url => {},
+										 	:loading => "Element.hide('merge_link#{@artist.id}');
+																	Element.show('merge_form#{@artist.id}');"}) %>
+	</span>
+	<span id="merge_form<%=@artist.id%>" style="display:none;">
+
+		<form action="/artist/merge" method="post" onsubmit="new Ajax.Updater('merge_result<%=@artist.id%>', '/artist/merge', {asynchronous:true, evalScripts:true, onLoading:function(request){Element.hide('merge_form<%=@artist.id%>');Element.show('merge_result<%=@artist.id%>');}, parameters:Form.serialize(this)}); return false;">
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			<%= hidden_field :artist_1, :id, :value => @artist.id %>
+			<%= text_field :artist_2, :name, :size => 17, :class => 'inline_text_field' %>
+			<%= submit_tag "M", :class => "inline_submit_button" %>
+			<%= link_to_remote("c",
+											 	{:url => {},
+											 	:loading => "Element.show('merge_link#{@artist.id}');
+																		Element.hide('merge_form#{@artist.id}');"}) %>
+		</form>
+	</span>
+	<span id="merge_result<%=@artist.id%>" style="display:none;"></span>&nbsp;
+	
+	<!-- remove -->
+	<%= link_to "x", :controller => "artist", :action => "remove_artist", :params => {:artist_id => @artist.id } %>&nbsp;
+	
+	<!-- grade -->
+	<% if @recommending %>
+		&nbsp;<small><%= @recommendation.grade().to_s[0..4] %></small>&nbsp;
+	<% end-%>
+	
+	<!-- id -->
+	&nbsp;<small><%= @artist.id %></small>
+</div>

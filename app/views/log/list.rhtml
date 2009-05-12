@@ -1,0 +1,37 @@
+<div class="page_content_holder">
+	<h1>Logs</h1><br/>
+
+	<table class="admin_table">
+	  <tr>
+		  <% for column in Log.content_columns %>
+				<% if column.name != 'exception_backtrace' && column.name != 'item_class' && column.name != 'exception_message' %>
+		    	<td class="admin_table_td"><%= column.human_name %></td>
+				<% end-%>
+		  <% end %>
+	  </tr>
+
+		<% for log in @logs %>
+		  <tr>
+			  <% for column in Log.content_columns %>
+					<% if column.name != 'exception_backtrace' && column.name != 'item_class' && column.name != 'exception_message' %>
+						<td  class="admin_table_td">
+							<% if column.name == 'time' %>
+								<%=h Util::f_date_time(log.send(column.name)) %>
+							<% elsif column.name == 'event' %>
+								<%= link_to "#{log.send(column.name)}", :action => 'show', :id => log %>
+							<% else %>
+								<%=h log.send(column.name) %>
+							<% end-%>
+						</td>
+					<% end-%>
+			  <% end %>
+		  </tr>
+		<% end %>
+	</table>
+
+	<br/>
+	<div>
+		<%= link_to 'Previous', { :offset => @offset.to_i - 20, :limit => 20 } if @offset.to_i - 20 >= 0 %>
+		<%= link_to 'Next', { :offset => @offset.to_i + 20, :limit => 20 } if @logs.length > 0 %>
+	</div>
+</div>

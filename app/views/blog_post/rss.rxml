@@ -1,0 +1,22 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("the perceptron blog")
+    xml.link("http://theperceptron.com/blog/rss")
+    xml.description("Blog about tbe perceptron")
+    xml.language('en-uk')
+      for blog_post in @blog_posts
+        xml.item do
+          if blog_post.title.length > 0
+            xml.title(blog_post.title)
+          else
+            xml.title(blog_post.content)
+          end
+          xml.description(blog_post.get_f_content)           
+          xml.pubDate(blog_post.date.strftime("%a, %d %b %Y %H:%M:%S %z"))
+          xml.link("http://theperceptron.com/blog/show/" + blog_post.id.to_s)
+          xml.guid("http://theperceptron.com/blog/show/" + blog_post.id.to_s)
+        end
+      end
+  }
+}

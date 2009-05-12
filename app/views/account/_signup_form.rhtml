@@ -1,0 +1,41 @@
+<tr>
+	<td class="signup_field_title">Email</td>
+	<td class="signup_field"><%= text_field :user, :email, :size => 25, :class => 'text_field' %></td>
+	<td class="signup_field_validation">&nbsp;
+		<%= observe_field(:user_email,
+											:frequency => 0.5,
+											:update => :email_validation,
+											:url => { :action => :email_monitor }) %>
+		<span id="email_validation"><%= render(:partial => 'monitor_invalid') %></span>
+	</td>
+</tr>
+
+<tr>
+	<td class="signup_field_title">Password</td>
+	<td class="signup_field"><%= password_field :user, :password, :size => 15, :class => 'text_field' %></td>
+	<td class="signup_field_validation">&nbsp;
+		<%= observe_field(:user_password,
+											:frequency => 0.5,
+											:update => :password_validation,
+											:url => { :action => :password_monitor }) %>
+		<span id="password_validation"><%= render(:partial => 'monitor_invalid') %></span>
+	</td>
+</tr>
+<tr>
+	<td class="signup_field_title">Password confirm</td>
+	<td class="signup_field"><%= password_field :user, :password_confirmation, :size => 15, :class => 'text_field' %></td>
+	<td class="signup_field_validation">&nbsp;
+		<%= observe_field(:user_password_confirmation,
+											:frequency => 0.5,
+											:update => :password_confirmation_validation,
+											:url => { :action => :password_confirmation_monitor },
+											:with => "'user_password='+ escape($('user_password').value) + '&user_password_confirmation=' + escape(value)") %>
+		<span id="password_confirmation_validation"><%= render(:partial => 'monitor_invalid') %></span>
+	</td>
+</tr>
+
+<script>
+	$('user_email').value='';
+	$('user_password').value='';
+	$('user_password_confirmation').value='';
+</script>

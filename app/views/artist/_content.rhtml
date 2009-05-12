@@ -1,0 +1,23 @@
+<!-- strips -->
+<%= render(:partial => 'artist/controls') %>
+<%= render(:partial => 'artist/elsewhere') %>
+<% if @logged_in && current_user.admin?() %>
+	<%= render(:partial => 'artist/admin') %>
+<% end-%>
+
+<!-- summary -->
+<% summary = @artist.get_summary() %>
+<% if summary != ""%>
+	<%= summary %> <a href='<%= @artist.get_elsewhere_intermediary_url(Artist::WIKIPEDIA, @recommendation)%> '>wikipedia</a>.
+<% else %>
+	No summary.
+<% end-%>
+
+<!-- sources -->
+<% if @recommending %>
+	<%= render(:partial => 'recommendation/sources' ) %>
+<% end-%>
+
+<% if @recommending %>
+	<br/>
+<% end-%>

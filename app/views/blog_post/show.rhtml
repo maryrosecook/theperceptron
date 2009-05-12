@@ -1,0 +1,14 @@
+<div class="page_content_holder">
+	<h1><a href='/blog' class="blog_header">Blog</a>
+		<% if @admin_logged_in %>
+			<%= link_to "new", :action => "new" %>
+		<% end-%>
+	</h1>
+
+	<br/>
+
+	<% @title = @blog_post.title %>
+	<%= render :partial => 'display_blog_post' %>
+
+	<%= link_to "Back to blog index", :controller => "blog_post", :action => "index" %>
+</div><br/>

@@ -1,0 +1,133 @@
+<div class="page_content_holder">
+	<h1>API</h1><br/>
+	
+	An API is a way for other websites interact with the perceptron, primarily
+	by extracting data.<br/><br/>
+		
+	The API is still nascent.  The structures of commands taken and data returned
+	<strong>will</strong> change. Please <a href='/contact'>send feedback or suggestions</a>.
+	Let me know what commands you would like.<br/>
+	
+	<ul>
+		<li class="api_call_list"><a href='#recommend_for_artist'>Recommend for artist</a><br/></li>
+		<li class="api_call_list"><a href='#user_recent_recommendations'>User's recent recommendations</a><br/></li>
+		<li class="api_call_list"><a href='#recent_searches'>Recent searches</a><br/></li>
+		<li class="api_call_list"><a href='#artist_information'>Artist information</a><br/></li>
+	</ul>
+	
+	<br/><HR>
+	
+	<a name="recommend_for_artist"></a>
+	<h3>Recommend for artist</h3><br/>
+	
+	GET method. Takes the name of an artist and returns up to <%= Recommendation::ARTIST_NUM_RECOMMENDATIONS %>
+	recommendations.<br/><br/>
+	
+	<a href='http://theperceptron.com/recommendation/artist/Circle+Takes+The+Square?format=xml'>theperceptron.com/recommendation/artist/Circle+Takes+The+Square?format=xml</a><br/><br/>
+	
+	Parameters:
+	
+	<ul>
+		<li>id: Full or partial artist name to search for.</li>
+		<li>format: Desired format for results. Possible values: xml, html.</li>
+	</ul>
+	
+	Data returned:
+	
+	<ul>
+		<li>article-url: Recommended artist Wikipedia page URL.</li>
+		<li>article-url-updated: Date artist's Wikipedia page URL was last updated.</li>
+		<li>name: Recommended artist name.</li>
+		<li>sample-track-url: The URL of a sample track for the recommended artist.</li>
+		<li>sample-track-url-updated: Date sample track URL last updated.</li>
+		<li>summary: Description of recommended artist. Taken from Wikipedia page.</li>
+		<li>summary-updated: Date summary last updated.</li>
+	</ul>
+	
+	<br/><HR>
+	
+	<a name="user_recent_recommendations"></a>
+	<h3>User's recent recommendations</h3><br/>
+	
+	GET method. Returns RSS feed of <%= Recommendation::NON_LOGGED_IN_USER_NUM_RECOMMENDATIONS %> most
+	recent recommendations for user with passed username.<br/><br/>
+	
+	<a href='http://theperceptron.com/recommendation/user/maryrosecook'>theperceptron.com/recommendation/user/maryrosecook</a><br/><br/>
+	
+	Parameters:
+	
+	<ul>
+		<li>username: Username of user to show recommendations for.</li>
+	</ul>
+	
+	Data returned:
+	
+	<ul>
+		<li>article-url: Recommended artist Wikipedia page URL.</li>
+		<li>article-url-updated: Date artist's Wikipedia page URL was last updated.</li>
+		<li>name: Recommended artist name.</li>
+		<li>sample-track-url: The URL of a sample track for the recommended artist.</li>
+		<li>sample-track-url-updated: Date sample track URL last updated.</li>
+		<li>summary: Description of recommended artist. Taken from Wikipedia page.</li>
+		<li>summary-updated: Date summary last updated.</li>
+	</ul>
+	
+	<br/><HR>
+	
+	<a name="recent_searches"></a>
+	<h3>Recent searches</h3><br/>
+
+	GET method. Returns list of most recent site searches.<br/><br/>
+
+	<a href='http://theperceptron.com/search/recent?offset=0&limit=100'>theperceptron.com/search/recent?offset=0&limit=100</a><br/><br/>
+
+	Parameters:
+
+	<ul>
+		<li>offset (optional): Where to start returning results. e.g. an offset of 20 
+				would start the results at the 20th most recent search.</li>
+		<li>limit (optional): Number of searches to return.  Limit is limited to 200.</li>
+	</ul>
+
+	Data returned:
+
+	<ul>
+		<li>time: time of search.</li>
+		<li>body: text of search.</li>
+		<li>artist: artist returned for search.</li>
+	</ul>
+	
+	<br/><HR>
+	
+	<a name="artist_information"></a>
+	<h3>Artist information</h3><br/>
+
+	GET method. Returns Myspace, website, sample track, summary and
+	(en) Wikipedia article page title for queried band<br/><br/>
+
+	<a href='http://theperceptron.com/artist/show/sonic youth?format=xml'>theperceptron.com/artist/show/sonic youth?format=xml</a><br/><br/>
+
+	Parameters:
+
+	<ul>
+		<li>format: desired format for results. Possible values: xml, html.</li>
+		<li>artist name: name of artist to show information for.</li>
+	</ul>
+
+	Data returned:
+
+	<ul>
+		<li>article-title: article title of artist's page on (en) Wikipedia.</li>
+		<li>article-title-updated: time article title was found.</li>
+		<li>myspace-url: artist's Myspace URL.</li>
+		<li>myspace-url-updated: time Myspace URL was found.</li>
+		<li>name: artist name.</li>
+		<li>safe-name: alpha-numeric version of artist name.</li>
+		<li>sample-track-url: URL of a sample track for the artist.</li>
+		<li>sample-track-url-updated: time the sample track URL was found.</li>
+		<li>summary: summary for the artist.  Taken from Wikipedia.</li>
+		<li>summary-updated: time the summary was taken.</li>
+		<li>website: artist website URL.</li>
+		<li>website-updated: time artist website URL was found.</li>
+	</ul>
+</div>

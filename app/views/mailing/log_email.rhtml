@@ -1,0 +1,12 @@
+Hi Mary,
+
+Event: <%= @event %>
+<% if @current_user %>
+User: <%= @current_user.username %>
+<% end-%>
+Item: <%= @item_id %> <%= @item_class %>
+Message: <%= @message %>
+Time: <%= Util::f_date_time(@time) %>
+Exception: <%= @exception_message %>
+
+<%= @exception_backtrace %>

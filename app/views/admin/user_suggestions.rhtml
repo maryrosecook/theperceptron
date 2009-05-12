@@ -1,0 +1,39 @@
+<div class="page_content_holder">
+	<h1>User suggestions</h1><br/>
+	
+	<table class="admin_table">
+	  <tr>
+			<td class="admin_table_td">First artist</td>
+			<td class="admin_table_td">Second artist</td>
+			<td class="admin_table_td">Users</td>
+	  </tr>
+
+		<% for link in @links %>
+		  <tr>
+				<td class="admin_table_td"><%= link_to "#{link.first_artist.name}", :controller => "artist", :action => "show", :id => "#{link.first_artist.safe_name}" %></td>
+				<td class="admin_table_td"><%= link_to "#{link.second_artist.name}", :controller => "artist", :action => "show", :id => "#{link.second_artist.safe_name}" %></td>
+				<td class="admin_table_td">
+					<% for user in link.users() %>
+						<%= user.username %> 
+					<% end-%>
+				</td>
+				<td class="admin_table_td">
+					<span id="destroy_user_suggestion_link<%=link.id%>">
+						<%= link_to_remote("x",
+															{:url => {:controller => 'link', :action => 'destroy_user_suggestion', :link_id => link.id },
+															 :update => "destroy_user_suggestion_result#{link.id}",
+															 :loading => "Element.hide('destroy_user_suggestion_link#{link.id}');
+																						Element.show('destroy_user_suggestion_result#{link.id}');"}) %>
+					</span>
+					<span id="destroy_user_suggestion_result<%=link.id%>"></span>
+				</td>
+		  </tr>
+		<% end %>
+	</table>
+
+	<br/>
+	<div>
+		<%= link_to 'Previous', { :offset => @offset.to_i - 20, :limit => 20 } if @offset.to_i - 20 >= 0 %>
+		<%= link_to 'Next', { :offset => @offset.to_i + 20, :limit => 20 } if @links.length > 0 %>
+	</div>
+</div><br/>

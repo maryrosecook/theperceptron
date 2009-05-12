@@ -1,0 +1,18 @@
+<%= error_messages_for 'blog_post' %>
+
+<%= text_area 'blog_post', 'content', :cols => 32, :rows => 6 %><br/>
+
+<%= check_box 'blog_post', 'published' %> 
+<label for="post_published">Pub</label><br/>
+
+<table>
+	<tr>
+		<td><label for="post_published">Title</label></td>
+		<td><%= text_field 'blog_post', 'title', :size => 28 %></td>
+	</tr>
+
+	<tr>
+		<td><label for="post_published">Tags</label></td>
+		<td><%= text_field 'blog_post', 'tags', :size => 28 %></td>
+	</tr>
+</table>

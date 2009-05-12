@@ -1,0 +1,83 @@
+<div class="page_content_holder">
+	<h1>Stats <small><%= Util::f_date_time(Time.new()) %></small></h1> <br/>
+	
+	<strong>Artists</strong><br/><br/>
+	<div class="stats_description">
+		all<br/>
+		tracks<br/>
+		summaries<br/>
+		websites<br/>
+		myspaces<br/>
+		rated<br/>
+		suggestions<br/>
+	</div>
+	
+	<div class="stats_data">
+		<%= @artists %><br/>
+		<%= @artist_sample_track_urls %> / <%= @artist_sample_track_urls_percentage %>%<br/>
+		<%= @artist_summaries %> / <%= @artist_summaries_percentage %>%<br/>
+		<%= @artist_websites %> / <%= @artist_websites_percentage %>%<br/>
+		<%= @artist_myspace_urls %> / <%= @artist_myspace_urls_percentage %>%<br/>
+		<%= @rated_artists %><br/>
+		<%= @suggestions %><br/>
+	</div><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	
+	<strong>Links</strong><br/><br/>
+	<div class="stats_description">
+		links<br/>
+		density<br/>
+	</div>
+	
+	<div class="stats_data">
+		<%= @links %><br/>
+		<%= @linkage %><br/>
+	</div><br/><br/><br/>
+	
+	<strong>Grades</strong><br/><br/>
+	<div class="stats_description">
+		link grade lag<br/>
+		last sg recalc<br/>
+	</div>
+	
+	<div class="stats_data">
+		<%= @link_grade_lag %><br/>
+		<%= Util::f_date_time(@source_grades_last_recalculated) %><br/>
+	</div><br/><br/><br/>
+	
+	<strong>Users</strong><br/><br/>
+	
+	<div class="stats_description">
+		fakes<br/>
+		reals<br/>
+		latest<br/>
+	</div>
+	
+	<div class="stats_data">
+		<%= @user_fakes %><br/>
+		<%= @user_reals %><br/>
+		<% for user in @users_latest %>
+			<%= user.username %>
+		<% end-%>
+	</div><br/><br/><br/><br/>
+	
+	<strong>Flags</strong><br/><br/>
+	
+	<div class="stats_description">
+		unresolved/all<br/>
+	</div>
+	
+	<div class="stats_data">
+		<%= @flag_unresolved %>/<%= @flags %><br/>
+	</div><br/><br/>
+	
+	<strong>Searches</strong><br/><br/>
+	
+	<div class="stats_description">
+		all<br/>
+	</div>	
+	
+	<div class="stats_data">
+		<%= @searches %><br/>
+	</div>
+	
+</div><br/>
