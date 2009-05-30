@@ -8,4 +8,7 @@ Capfile
 config/database.yml
 config/deploy.rb
 config/config.yml
-
+doc/commands
+doc/ideas
+doc/next_live
+doc/publicity
