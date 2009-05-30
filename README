@@ -132,10 +132,6 @@ How the site works
 		- Tasks that scrape artist links and artist data should be put in a cron job (see crons in /script). 
 
 
-	* To do:
-
-		- Put shared dir and files in place on server
-
 ---
 
-	Some great bands: At The Drive-In, The Blood Brothers, Bob Dylan, Circle Takes The Square, Dear And The Headlights, Des Ark, Dilute, Heavens To Betsy, Julie Ruin, Love Lost But Not Forgotten, Maximillian Colby, Meshuggah, Orchid, The Paper Chase, Sonic Youth, Sunset Rubdown, Team Dresch, Tracy + The Plastics, V For Vendetta, Xiu Xiu.
+Some great bands: At The Drive-In, The Blood Brothers, Bob Dylan, Circle Takes The Square, Dear And The Headlights, Des Ark, Dilute, Heavens To Betsy, Julie Ruin, Love Lost But Not Forgotten, Maximillian Colby, Meshuggah, Orchid, The Paper Chase, Sonic Youth, Sunset Rubdown, Team Dresch, Tracy + The Plastics, V For Vendetta, Xiu Xiu.
