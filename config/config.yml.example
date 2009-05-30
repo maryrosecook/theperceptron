@@ -1,3 +1,15 @@
+##### Required for basic data scraping.
+
+
+# Sign up for a last.fm API key and pop it in below.
+last_fm_api_key: fakeapikey
+
+yahoo_application_id: fakeappid
+
+
+##### Required for deployment to a live server.
+
+
 # SMTP settings for sending error and information emails
 # You can use a Google Apps account for sending the actual email
 smtp_domain: blah.gmail.com # e.g. smtp.gmail.com
@@ -6,10 +18,9 @@ site_domain: blahblah.com # e.g. theperceptron.com (but not)
 smtp_username: blahblah@blahblah.com # e.g. communication@theperceptron.com (but not)
 smtp_password: password
 
-# Sign up for a last.fm API key and pop it in below.
-last_fm_api_key: fakeapikey
 
-yahoo_application_id: fakeappid
+##### Not really required.
+
 
 # I think Seeqpod are basically dead.  the perceptron used them to get sample track URLs.
 # You can put in some API UIDs in here for fun if you have any lying around.

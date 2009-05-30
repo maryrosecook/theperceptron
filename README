@@ -40,7 +40,7 @@ Initial setup
 
 - Configure the application:
 	- Go into the config/ directory and rename the config.example.yml file to config.yml
-	- Fill in your Yahoo API key and Last.fm API key.
+	- Fill in your Yahoo API key, Last.fm API key.
 
 - Start the app:
 	- In your terminal:
