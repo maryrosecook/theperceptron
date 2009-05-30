@@ -7,7 +7,7 @@ module Seeqpodding
   def self.pull_sample_track_url(artist_id)
     sample_track_url = nil
     artist = Artist.find(artist_id)
-    api_uid = Util::rand_el(Configuring.get("seeqpod_api_identities"))
+    api_uid = Util::rand_el(Configuring.get("seeqpod_api_uids"))
     escaped_artist_name = URI.escape(artist.name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
     res = get_call("http://www.seeqpod.com/api/v0.2/#{api_uid}/music/search/#{escaped_artist_name}")
     sample_track_url = extract_valid_file_url_from_results(res, artist)

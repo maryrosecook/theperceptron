@@ -1,0 +1,27 @@
+# SMTP settings for sending error and information emails
+# You can use a Google Apps account for sending the actual email
+smtp_domain: blah.gmail.com # e.g. smtp.gmail.com
+smtp_port: 587 # e.g. 587
+site_domain: blahblah.com # e.g. theperceptron.com (but not)
+smtp_username: blahblah@blahblah.com # e.g. communication@theperceptron.com (but not)
+smtp_password: password
+
+# Sign up for a last.fm API key and pop it in below.
+last_fm_api_key: fakeapikey
+
+yahoo_application_id: fakeappid
+
+# I think Seeqpod are basically dead.  the perceptron used them to get sample track URLs.
+# You can put in some API UIDs in here for fun if you have any lying around.
+# I doubt API access will actually work.
+seeqpod_api_uids: ["fakeseeqpoduid", "fakeseeqpoduid2"]
+
+# Sign up for a Daylifing API account and enter the access key and shared secret
+# if you want to the Voxpomp functionality to work.
+# You probably don't care.
+daylifeing_access_key: fakedaylifeingaccesskey
+daylifeing_shared_secret: fakedaylifeingsharedsecret
+
+# If you don't care about Voxpomp, don't bother to sign up for an API
+# key at They Work For You and enter it below, either.
+twfy_api_key: faketwfyapikey
