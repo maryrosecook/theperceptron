@@ -1,10 +1,10 @@
 the perceptron
-Astute music recommendations.
+Astute music recommendations
 
 See in action: http://theperceptron.com
 
-By: maryrosecook
-http://maryrosecook.com
+by maryrosecook
+maryrosecook.com
 maryrosecook@maryrosecook.com
 
 ---
@@ -75,3 +75,67 @@ Initial setup
 		- m: merge all this artist's data with all the data for another artist.
 	- x: delete this artist.
 	- 27215: id of this artist in the artists table.
+
+- Set up data gathering:
+	- You will probably need to automate the gathering of recommendation and artist data.
+	- Add entries to your crontab to periodically call the scraping functions.  Mine are below.
+	- You may need to change the timings. You will almost certainly need to change the path to the app code and the path to ruby,
+
+	44 * * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'HypeMachineBlogSource.scrape'
+	5  * * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'MyspaceBandFriendsSource::scrape(nil, true, 100)'
+	20 * * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'Artisting.update_artist_details()'
+	10 1 * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'Recommendation::generate_user_recommendations()'
+	2  5 * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'TinyMixTapesSource.scrape()'
+	0,3,7,11,15,19,23,27,31,35,39,43,47,51,55,59 * * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'Grading::recalculate_link_grades()'
+	19 2 * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'SourceGrade::recalculate_source_grades()'
+	41 * * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'MyspaceBillsSource.scrape'
+	42 6 * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'TempArtistAssociation::convert_temp_artist_associations()'
+	45 * * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'Artisting::delete_bad_sample_track_urls()'
+	50 4 * * * cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production 'AbsolutePunkSource.scrape()'
+
+
+---
+
+How the site works
+
+- Basic approach:
+	- Make links between artists via:
+		- Tiny Mix Tapes recommendation.
+		- Epitonic recommendation.
+		- Myspace friendship.
+		- Frequent coincidence of purchase on Emusic.
+		- Frequent coincidence on mp3 blogs.
+		- Last.fm recommendation.
+		- Coincidence on gig rosters.
+		- Suggestion by users.
+
+- Weight the sources of links by examining user behaviour:
+	- User liking/disliking an artist.
+	- User adding an artist to their playlist.
+	- User visiting an artist's Myspace, website or Wikipedia page.
+
+- Artist data:
+	- Automatically scraped and shown to user:
+		- sample track
+		- Wikipedia summary
+		- website link
+		- Myspace link
+
+	- Admin:
+		- Can reject scraped pieces of data.
+			- Click 'x' to ignore a specific value for a specific piece of data.  (That value won't be scraped again.)
+			- Click 'r' to delete that piece of data (and re-scrape as normal).
+		- Artist identity:
+			- Merge two artists.
+			- Delete or rename artist.
+			- Add alternative name for artist.
+		- Tasks that scrape artist links and artist data should be put in a cron job (see crons in /script). 
+
+
+	* To do:
+
+		- Put shared dir and files in place on server
+
+---
+
+	Some great bands: At The Drive-In, The Blood Brothers, Bob Dylan, Circle Takes The Square, Dear And The Headlights, Des Ark, Dilute, Heavens To Betsy, Julie Ruin, Love Lost But Not Forgotten, Maximillian Colby, Meshuggah, Orchid, The Paper Chase, Sonic Youth, Sunset Rubdown, Team Dresch, Tracy + The Plastics, V For Vendetta, Xiu Xiu.
