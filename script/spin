@@ -1,1 +1,1 @@
-/home/admin/public_html/theperceptron.com/current/script/process/spawner -p 8000 -i 5 -e production
+/home/admin/public_html/theperceptron.com/current/script/process/spawner -p 8000 -i 3 -e production
