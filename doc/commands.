@@ -1,0 +1,56 @@
+* log into db
+  mysql theperceptron_production --user=root --password=h
+
+* backup db
+  mysqldump theperceptron_production --user=root --password=h > theperceptron_production_backup.sql
+
+* import local db into remote db
+  scp -P 30000 ~/Desktop/playmary_development.sql admin@playmary.com:/home/admin/
+  ssh -p 30000 admin@playmary.com
+  mysql --user=root playmary_production < playmary_development.sql --password=h
+
+* restart mongrels
+	cd public_html/theperceptron.com
+  mongrel_rails start -d -e production -p 8000 -P log/mongrel8000.pid
+  mongrel_rails start -d -e production -p 8001 -P log/mongrel8001.pid
+  mongrel_rails start -d -e production -p 8002 -P log/mongrel8002.pid
+  mongrel_rails start -d -e production -p 8002 -P log/mongrel8003.pid
+  mongrel_rails start -d -e production -p 8002 -P log/mongrel8004.pid
+  - local:
+    mongrel_rails start -e development -p 3001
+
+* nginx:
+  sudo /etc/init.d/nginx stop
+  sudo /etc/init.d/nginx start
+
+* create fixtures from dev db:
+  rake extract_fixtures
+
+* run unit tests:
+  rake test
+  rake test:units TEST=test/unit/h.rb
+
+* google apps:
+  http://www.google.com/a/theperceptron.com/
+
+* site checker
+  http://mon.itor.us/
+
+* grab log
+  scp -P 30000 admin@theperceptron.com:/home/admin/public_html/theperceptron.com/current/log/production.log ~/Desktop/
+  scp -P 30000 admin@theperceptron.com:/home/admin/public_html/theperceptron.com/current/log/access.log ~/Desktop/
+
+* last.fm:
+  last.fm api key 0fe92bb2a3b1e5b714cc39e2df8da14f and your secret is 8081b0550f47ef8f7f24057e31d1cef9
+
+* Affiliate:
+  - amazon.com: u/n: theperceptron-20 email: contact@theperceptron.com url: http://affiliate-program.amazon.com
+  - insound.com: u/n: contact@theperceptron.com
+
+				* Run Rails code:
+				  - local:
+				    /usr/bin/ruby script/runner -e development ''
+				  - remote:
+				    cd /home/admin/public_html/theperceptron.com/current && /usr/bin/ruby script/runner -e production '' > ~/cronlogs/no$
+
+
