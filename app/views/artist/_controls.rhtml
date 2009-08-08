@@ -70,7 +70,7 @@
 																			Element.hide('flag_form#{@artist.id}');"}) %>
 			</form>
 		</span>
-		<span id="flag_result<%=@artist.id%>" style="display:none;"></span>
+		<span id="flag_result<%=@artist.id%>" style="display:none;"><img src='/images/flagged.gif'></span>
 	<% end-%>
 	
 	<!-- playlist -->
@@ -87,6 +87,7 @@
 		<% if @playlist %>
 			<% playlist_removal_js = "Element.hide('playlist_item#{@artist.id}');" %>
 		<% end-%>
+		&nbsp;
 		<span id='save_link<%=@artist.id%>' style="<%=save_link_style%>">
 			<%= link_to_remote("add to playlist",
 												 	{:url => {:controller => 'recommendation', :action => 'switch_save_state', :recommendation_id => @recommendation.id, :new_state => Recommendation::SAVED },
