@@ -8,7 +8,7 @@
 <!-- summary -->
 <% summary = @artist.get_summary() %>
 <% if summary != ""%>
-	<%= summary %> <a href='<%= @artist.get_elsewhere_intermediary_url(Artist::WIKIPEDIA, @recommendation)%> '>wikipedia</a>.
+	<%= summary %>.
 <% else %>
 	No summary.
 <% end-%>
