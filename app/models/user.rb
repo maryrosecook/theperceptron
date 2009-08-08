@@ -77,12 +77,12 @@ class User < ActiveRecord::Base
   end
 
   # creates a unique username based on user's email
-  def create_username() #t
+  def create_username()
     email_username = self.email.gsub(/(\A([\w\.\-\+]+))@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, "\\1")
     email_username = email_username.gsub(/\W/, "")
     username_try = email_username
     
-    i = 1
+    i = User.find(:first, :conditions => "email = '#{email_username}'", :order => "id DESC").id
     found_unique_username = false
     while(!found_unique_username)
       if User.unique_username?(nil, username_try)
