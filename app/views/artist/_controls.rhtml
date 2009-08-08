@@ -34,7 +34,7 @@
 			<% end-%>
 			<span id='dislike<%=@artist.id%>'>
 				<span id='dislike_link<%=@artist.id%>'>
-					<%= link_to_remote("<img src='/images/brokenheart.gif'>",
+					<%= link_to_remote("<img src='/images/brokenheart.gif' border=0>",
 														 	{:url => {:controller => 'link_rating', :action => 'dislike', :artist_id => @artist.id, :chain_str => chain_str },
 														 	:loading => "Element.hide('dislike_link#{@artist.id}');
 																					Element.show('disliked_text#{@artist.id}');
