@@ -11,7 +11,7 @@
 			<% end-%>
 			<span id='like<%=@artist.id%>'>
 				<span id='like_link<%=@artist.id%>'>
-				<%= link_to_remote("<img src='/images/heart.gif'>",
+				<%= link_to_remote("<img src='/images/heart.gif' border=0>",
 													 	{:url => {:controller => 'link_rating', :action => 'like', :artist_id => @artist.id, :chain_str => chain_str },
 													 	:loading => "Element.hide('like_link#{@artist.id}');
 																				Element.show('liked_text#{@artist.id}');
@@ -50,7 +50,7 @@
 		<img src='/images/flagged.gif'>
 	<% else %>
 		<span id='flag_link<%=@artist.id%>'>
-			<%= link_to_remote("<img src='/images/flag.gif'>",
+			<%= link_to_remote("<img src='/images/flag.gif' border=0>",
 											 	{:url => {},
 											 	:loading => "Element.hide('flag_link#{@artist.id}');
 																		Element.show('flag_form#{@artist.id}');"}) %>
