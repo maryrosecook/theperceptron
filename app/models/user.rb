@@ -82,7 +82,9 @@ class User < ActiveRecord::Base
     email_username = email_username.gsub(/\W/, "")
     username_try = email_username
     
-    i = User.find(:first, :conditions => "email = '#{email_username}'", :order => "id DESC").id
+    latest_user = User.find(:first, :conditions => "email = '#{email_username}'", :order => "id DESC")
+    latest_user ? i = latest_user.id : i = 1
+    
     found_unique_username = false
     while(!found_unique_username)
       if User.unique_username?(nil, username_try)
