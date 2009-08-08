@@ -2,7 +2,7 @@
 	<!-- like -->
 	<% if !@logged_in || !current_user.has_disliked?(@artist) %>
 		<% if @logged_in && current_user.has_liked?(@artist)%>
-			<img src='/images/hearted.gif'>&nbsp;&nbsp;
+			<img src='/images/hearted.gif' title='Loved' alt='Loved'>&nbsp;&nbsp;
 		<% else %>
 			<% if @recommendation %>
 				<% chain_str = @recommendation.chain() %>
@@ -11,13 +11,13 @@
 			<% end-%>
 			<span id='like<%=@artist.id%>'>
 				<span id='like_link<%=@artist.id%>'>
-				<%= link_to_remote("<img src='/images/heart.gif' border=0>",
+				<%= link_to_remote("<img src='/images/heart.gif' border=0 title='Love' alt='Love'>",
 													 	{:url => {:controller => 'link_rating', :action => 'like', :artist_id => @artist.id, :chain_str => chain_str },
 													 	:loading => "Element.hide('like_link#{@artist.id}');
 																				Element.show('liked_text#{@artist.id}');
 																				Element.hide('dislike#{@artist.id}');"}) %>&nbsp;&nbsp;
 				</span>
-				<span id="liked_text<%=@artist.id%>" style="display:none;"><img src='/images/hearted.gif'>&nbsp;&nbsp;</span>
+				<span id="liked_text<%=@artist.id%>" style="display:none;"><img src='/images/hearted.gif' title='Loved' alt='Loved'>&nbsp;&nbsp;</span>
 			</span>
 		<% end %>
 	<% end-%>
@@ -25,7 +25,7 @@
 	<!-- dislike -->
 	<% if !@logged_in || !current_user.has_liked?(@artist) %>
 		<% if @logged_in && current_user.has_disliked?(@artist)%>
-			<img src='/images/brokenhearted.gif'>&nbsp;&nbsp;
+			<img src='/images/brokenhearted.gif' title='Hated' alt='Hated'>&nbsp;&nbsp;
 		<% else %>
 			<% if @recommendation %>
 				<% chain_str = @recommendation.chain() %>
@@ -34,23 +34,23 @@
 			<% end-%>
 			<span id='dislike<%=@artist.id%>'>
 				<span id='dislike_link<%=@artist.id%>'>
-					<%= link_to_remote("<img src='/images/brokenheart.gif' border=0>",
+					<%= link_to_remote("<img src='/images/brokenheart.gif' border=0 title='Hate' alt='Hate'>",
 														 	{:url => {:controller => 'link_rating', :action => 'dislike', :artist_id => @artist.id, :chain_str => chain_str },
 														 	:loading => "Element.hide('dislike_link#{@artist.id}');
 																					Element.show('disliked_text#{@artist.id}');
 																					Element.hide('like#{@artist.id}');"}) %>&nbsp;&nbsp;
 				</span>
-				<span id="disliked_text<%=@artist.id%>" style="display:none;"><img src='/images/brokenhearted.gif'>&nbsp;&nbsp;</span>
+				<span id="disliked_text<%=@artist.id%>" style="display:none;"><img src='/images/brokenhearted.gif' title='Hated' alt='Hated'>&nbsp;&nbsp;</span>
 			</span>
 		<% end %>
 	<% end-%>
 	
 	<!-- flag -->
 	<% if @logged_in && current_user.has_flagged?(@artist)%>
-		<img src='/images/flagged.gif'>
+		<img src='/images/flagged.gif' title='Flagged' alt='Flagged'>
 	<% else %>
 		<span id='flag_link<%=@artist.id%>'>
-			<%= link_to_remote("<img src='/images/flag.gif' border=0>",
+			<%= link_to_remote("<img src='/images/flag.gif' border=0 title='Flag' alt='Flag'>",
 											 	{:url => {},
 											 	:loading => "Element.hide('flag_link#{@artist.id}');
 																		Element.show('flag_form#{@artist.id}');"}) %>
@@ -70,7 +70,7 @@
 																			Element.hide('flag_form#{@artist.id}');"}) %>
 			</form>
 		</span>
-		<span id="flag_result<%=@artist.id%>" style="display:none;"><img src='/images/flagged.gif'></span>
+		<span id="flag_result<%=@artist.id%>" style="display:none;"><img src='/images/flagged.gif' title='Flagged' alt='Flagged'></span>
 	<% end-%>
 	
 	<!-- playlist -->
