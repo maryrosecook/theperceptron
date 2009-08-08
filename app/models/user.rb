@@ -81,9 +81,9 @@ class User < ActiveRecord::Base
     email_username = self.email.gsub(/(\A([\w\.\-\+]+))@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, "\\1")
     email_username = email_username.gsub(/\W/, "")
     username_try = email_username
-    
-    latest_user = User.find(:first, :conditions => "email = '#{email_username}'", :order => "id DESC")
-    latest_user ? i = latest_user.id : i = 1
+
+    latest_user = User.find(:first, :conditions => "email LIKE '#{email_username}%'", :order => "id DESC")
+    latest_user ? i = latest_user.id + 1 : i = 1
     
     found_unique_username = false
     while(!found_unique_username)
