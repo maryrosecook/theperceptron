@@ -33,7 +33,7 @@ class AdminController < ApplicationController
     @flags = Flag.count()
     @flag_unresolved = Flag.get_unresolved().length
     
-    @searches = Search.count()
+    @searches = Search.count(:conditions => 'hand_search = 1')
   end
   
   def data
