@@ -3,11 +3,11 @@ module RecommendationHelper
   def self.get_elsewhere_strip(recommendation)
     out = ""
     if artist = recommendation.recommended_artist
-      out += artist.get_myspace_url() != "" ? "<a href='#{artist.get_elsewhere_intermediary_url(Artist::MYSPACE, recommendation)}'><img src='/images/myspace.gif' border=0 title='Artist Myspace' alt='Artist Myspace'></a> " : ""
+      out += artist.get_myspace_url() != "" ? "<a href='#{artist.get_elsewhere_intermediary_url(Artist::MYSPACE, recommendation)}'>myspace</a> " : ""
       out += "&nbsp; " if artist.get_myspace_url() != ""
-    	out += artist.get_article_url() != "" ? "<a href='#{artist.get_elsewhere_intermediary_url(Artist::WIKIPEDIA, recommendation)}'><img src='/images/wikipedia.gif' border=0 title='Artist Wikipedia article' alt='Artist Wikipedia article'></a> " : ""
+    	out += artist.get_article_url() != "" ? "<a href='#{artist.get_elsewhere_intermediary_url(Artist::WIKIPEDIA, recommendation)}'>wikipedia</a> " : ""
       out += "&nbsp; " if artist.get_article_url() != ""
-    	out += artist.get_website() != "" ? "<a href='#{artist.get_elsewhere_intermediary_url(Artist::WEBSITE, recommendation)}'><img src='/images/website.gif' border=0 title='Artist website' alt='Artist website'></a> " : ""
+    	out += artist.get_website() != "" ? "<a href='#{artist.get_elsewhere_intermediary_url(Artist::WEBSITE, recommendation)}'>website</a> " : ""
       out += "&nbsp; " if artist.get_website() != ""
     	#out += artist.get_insound_url() != "" && artist.get_amazoncom_url() != "" ? " buy on <a href='#{artist.get_elsewhere_intermediary_url(Artist::INSOUND, recommendation)}'>insound</a> or <a href='#{artist.get_elsewhere_intermediary_url(Artist::AMAZONCOM, recommendation)}'>amazon</a> " : ""
     end
