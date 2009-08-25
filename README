@@ -9,7 +9,11 @@ maryrosecook@maryrosecook.com
 
 ---
 
-The site's recommendations come from artists who admire each other, music critics, artists who feature on the same mp3 blog, lists of artists who are on the same label, artists who often appear on mixtapes together, people's music buying habits, user suggestions and lists of artists who have played shows together. Further, the site learns from your behaviour and skews recommendations towards your music taste.
+A user types in an artist they like and gets recommended other, connected artists.  Connections include friendship, music critic recommendation, a record release on the same label, co-occurrence on mixtapes and in people's music collections, and appearance at the same gig.
+
+Each recommended artist has a description, sample track, links to the artist's Myspace and website, and a 'like' button.
+
+When a user says they like a recommended artist, listens to the artist's sample track or visits one of the artist's websites, the perceptron increases its trust in the connection's data source.  Afterwards, recommendations from that source are shown more prominently.
 
 ---
 

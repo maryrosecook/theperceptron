@@ -3,6 +3,7 @@
 
 * backup db
   mysqldump theperceptron_production --user=root --password=h > theperceptron_production_backup.sql
+	scp -P 30000 admin@theperceptron.com:/home/admin/theperceptron_production_backup.sql ~/Desktop/
 
 * import local db into remote db
   scp -P 30000 ~/Desktop/playmary_development.sql admin@playmary.com:/home/admin/
