@@ -37,6 +37,8 @@ Initial setup
 		- In your terminal:
 				cd route/to/theperceptron/folder
 				rake db:schema:load
+	- Add rows for each data source to the sources table:
+		- Run the query in db/sources_table.sql
 
 - Get the required API keys:
 	- Yahoo: http://developer.yahoo.com/wsregapp/index.php
